@@ -29,14 +29,14 @@
 # print(pessoa1.listar_enderecos())
 
 from classes.Endereco import Endereco
+from classes.PessoaFisica import PessoaFisica
 
+pessoa1 = PessoaFisica(cpf=39409158826, email="marchetto.marcelo@gmail.com", nome="marcelo")
 
+end1 = Endereco("04128081", "600")
+end2 = Endereco("04205000", "100")
 
+pessoa1.adicionar_endereco(apelido_endereco="casa", end=end1)
+pessoa1.adicionar_endereco(apelido_endereco="casa2", end=end2)
 
-
-try:
-    end1 = Endereco.consultar_cep("04128081")
-
-except Exception as e:
-    x = "Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known" in str(e)
-    print(x, "----------------------------------------------------")
+print(pessoa1.listar_enderecos())
