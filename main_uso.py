@@ -30,13 +30,16 @@
 
 from classes.Endereco import Endereco
 from classes.PessoaFisica import PessoaFisica
+from classes.Produto import Produto
+from classes.Carrinho import Carrinho
+from classes.Pedido import Pedido
 
-pessoa1 = PessoaFisica(cpf=39409158826, email="marchetto.marcelo@gmail.com", nome="marcelo")
+ndereco_entrega = Endereco(cep="04128081", numero=600)
+enderco_faturamento = Endereco(cep="04128081", numero=600)
 
-end1 = Endereco("04128081", "600")
-end2 = Endereco("04205000", "100")
+pessoa = PessoaFisica(cpf="12345678901", email="marchetto.marcelo@gmail.com")
+carrinho = Carrinho()
 
-pessoa1.adicionar_endereco(apelido_endereco="casa", end=end1)
-pessoa1.adicionar_endereco(apelido_endereco="casa2", end=end2)
+pedido1 = Pedido(endereco_entrega=pessoa, endereco_faturamento=enderco_faturamento, pessoa=pessoa, carrinho=carrinho)
 
-print(pessoa1.listar_enderecos())
+print(pedido1)

@@ -65,11 +65,11 @@ def test_Pessoa_fisica_listar_enderecos():
     
 
 
-def test_Pessoa_fisica_criar_objeto():
+@pytest.mark.pessoaf
+def test_Pessoa_fisica_busca_nome():
     pessoa1 = PessoaFisica(cpf=39409158826, email="marchetto.marcelo@gmail.com", nome="marcelo")
+    pessoa2 = PessoaFisica(cpf=39409158825, email="thomaz@gmail.com", nome="thomaz")
+    pessoa3 = PessoaFisica(cpf=39409158824, email="arthur@gmail.com", nome="arthur")
+    pessoa4 = PessoaFisica(cpf=39409158823, email="rafaels@gmail.com", nome="rafael")
     
-
-def test_Pessoa_fisica_criar_objeto():
-    pass
-def test_Pessoa_fisica_criar_objeto():
-    pass
+    assert PessoaFisica.busca_nome("marcelo")[0].__str__() == "marcelo"

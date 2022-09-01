@@ -10,8 +10,10 @@ from classes.Endereco import Endereco
 from classes.Produto import Produto
 from classes.PessoaFisica import PessoaFisica
 
+
 # Esta classe deverá permitir a inserção de items, bem como a atualização da quantidade de
 # produtos em um item
+
 
 class Carrinho:
 
@@ -19,13 +21,29 @@ class Carrinho:
         # Chave é o id do Produto e o Valor é a quantidade desse item no carrinho
         self.__itens = {}
 
-    def adicionar_item(self, item:Produto, qtd):
-        
-        id = item.get_id()
-        
-        # Implemente a adição do item no dicionário
-        
+    @property
+    def itens(self):
+        return self.__itens
 
-    def remover_item(self, item:Produto):
-        pass
-        # Implemente este método
+    def adicionar_item(self, item: Produto, qtd):
+        if qtd <= 0:
+            raise ValueError('Quantidade deve ser maior que 0')
+
+        id_item = item.get_id()
+
+        self.__itens[id_item] = qtd
+        # Implemente a adição do item no dicionário
+
+    def remover_item(self, item: Produto):
+        id_item = item.get_id()
+        if id_item in self.__itens:
+            del self.__itens[id_item]
+        else:
+            raise ValueError('Item não encontrado no carrinho')
+    
+
+
+    def __str__(self):
+
+        return f'{self.__itens}'
+
