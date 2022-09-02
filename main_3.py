@@ -7,6 +7,11 @@
 # ---------------------------------------------------------------------------
 from classes.PessoaFisica import PessoaFisica
 from classes.Endereco import Endereco
+from classes.Produto import Produto
+from classes.Carrinho import Carrinho
+from classes.Pedido import Pedido
+from classes.Pagamentos import Pagamento
+
 
 import copy
 
@@ -34,7 +39,7 @@ print("Endereços da pessoa após inclusão")
 print(pessoa1.listar_enderecos())
 
 # Criando um produto
-sabonete = Produto("0010342967", "Sabonete")
+sabonete = Produto(id_produto="0010342967", nome="Sabonete")
 
 ##############################################
 # Fim do setup
@@ -45,25 +50,25 @@ if len(pessoas) > 0:
     pessoa = pessoas[0]  #Pega a primeira pessoa
 
 
-produtos = Produto.busca_nome("sabon")
+produtos = Produto.busca_nome("Sabonete")
 
 if len(produtos) > 0: 
     produto = produtos[0]
 
 
 carrinho = Carrinho()
-carrinho.adicionar_item(sabonete)
+carrinho.adicionar_item(sabonete, 10)
 
-pedido = Pedido()
+pedido = Pedido(carrinho=carrinho, pessoa=pessoa1, endereco_entrega=end1, endereco_faturamento=end2)
 
-ends = pessoa.listar_enderecos()
+ends = pessoa1.listar_enderecos()
 
-if len(ends > 0):
+if len(ends) > 0:
     endereco = ends[0]
 
 # Lembre-se de adicionar estes atributos ao endereço
 pedido.endereco_entrega = copy.deepcopy(endereco) 
-pedido.endereco_faturamento = copy.deepcopy(endreco)
+pedido.endereco_faturamento = copy.deepcopy(endereco)
 
 
 pag = Pagamento(pedido)

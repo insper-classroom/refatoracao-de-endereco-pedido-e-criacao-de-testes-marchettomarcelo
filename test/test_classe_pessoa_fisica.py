@@ -3,6 +3,11 @@ from classes.PessoaFisica import PessoaFisica
 from classes.Endereco import Endereco
 
 @pytest.mark.pessoaf
+def test_Pessoa_fisica_busca_nome_sem_pessoas_fisicas_inicializadas():
+    assert PessoaFisica.busca_nome("marcelo") == []
+
+
+@pytest.mark.pessoaf
 def test_Pessoa_fisica_criar_objeto_email_cps():
 
     pessoa1 = PessoaFisica(cpf=39409158826, email="marchetto.marcelo@gmail.com")
@@ -19,12 +24,10 @@ def test_Pessoa_fisica_criar_objeto_email_cpf_nome():
 def test_Pessoa_fisica_adicionar_endereco():
     pessoa1 = PessoaFisica(cpf=39409158826, email="marchetto.marcelo@gmail.com", nome="marcelo")
 
-    try:
-        end1 = Endereco("04128081", "600")
-        pessoa1.adicionar_endereco(apelido_endereco="casa", end=end1)
-        assert False
-    except:
-        assert True
+    end1 = Endereco("04128081", "600")
+    pessoa1.adicionar_endereco(apelido_endereco="casa", end=end1)
+
+    assert pessoa1.listar_enderecos() == [end1]
 
 
 @pytest.mark.pessoaf
@@ -73,3 +76,4 @@ def test_Pessoa_fisica_busca_nome():
     pessoa4 = PessoaFisica(cpf=39409158823, email="rafaels@gmail.com", nome="rafael")
     
     assert PessoaFisica.busca_nome("marcelo")[0].__str__() == "marcelo"
+

@@ -59,17 +59,22 @@ class Endereco:
 
         # requisição GET na url de pesquisa do cep. Doc.: https://viacep.com.br/
 
-    
-        response = requests.request(
-            "GET", url_api, headers=headers, data=payload)
-
-        # converte a resposta json em dict
-        json_resp = response.json()
-
-        if json_resp == {'erro': True}:
-            return False
-        else:
-            return json_resp
-
-    
+        try:
+            response = requests.request(
+                "GET", url_api, headers=headers, data=payload)
         
+            # converte a resposta json em dict
+            json_resp = response.json()
+        
+            return json_resp
+        
+        except Exception as e :
+
+            if e.__class__.__name__ == "ConnectionError":
+                raise ConnectionError('Não foi possível conectar ao serviço de consulta de CEP')
+            else:
+                return False
+
+
+        
+            

@@ -48,6 +48,7 @@ class PessoaFisica:
             if i.nome == nome_sendo_buscado:
                 pessoas_com_nome_sendo_buscado.append(i)
 
+        print(pessoas_com_nome_sendo_buscado)
         return pessoas_com_nome_sendo_buscado
 
     def __str__(self):
