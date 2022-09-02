@@ -1,5 +1,6 @@
 import pytest
 from classes.Endereco import Endereco
+import requests
 
 
 @pytest.mark.endereco
@@ -34,6 +35,11 @@ def test_Endereco_metodo_Consultar_cep_mandando_int():
     assert type(end1).__name__ == "dict"
 
 @pytest.mark.endereco
+def test_Endereco_metodo_Consultar_cep_mandando_lista():
+    end1 = Endereco.consultar_cep(cep=[12])
+    assert end1 == False
+
+@pytest.mark.endereco
 def test_Endereco_metodo_Consultar_cep_mandando_str():
     end1 = Endereco.consultar_cep(cep="18190000")
     assert type(end1).__name__ == "dict"
@@ -55,7 +61,7 @@ def test_Endereco_metodo_Consultar_retornar_false_se_nao_for_possivel_verificar(
 def test_Endereco_metodo_Consultar_cep_retornar_erro_sem_conexao():
     # pytest raise errow if conection error
     # check if ConnectionError is raised
-    with pytest.raises(ConnectionError):
+    with pytest.raises(requests.exceptions.ConnectionError):
         end1 = Endereco.consultar_cep("04128081")
 
     

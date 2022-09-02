@@ -47,6 +47,10 @@ class Endereco:
         Metodo realiza a consulta do cep em uma api publica para obter informações
         como estado, cidade e rua
         '''
+
+        if type(cep) not in [str, int]:
+            return False
+
         # continuam existindo variaveis locais, nem tudo é propriedade de objeto
 
         # end point da API de consulta ao cep
@@ -59,21 +63,21 @@ class Endereco:
 
         # requisição GET na url de pesquisa do cep. Doc.: https://viacep.com.br/
 
-        try:
-            response = requests.request(
-                "GET", url_api, headers=headers, data=payload)
+        # try:
+        response = requests.request(
+            "GET", url_api, headers=headers, data=payload)
+    
+        # converte a resposta json em dict
+        json_resp = response.json()
+    
+        return json_resp
         
-            # converte a resposta json em dict
-            json_resp = response.json()
-        
-            return json_resp
-        
-        except Exception as e :
+        # except Exception as e :
 
-            if e.__class__.__name__ == "ConnectionError":
-                raise ConnectionError('Não foi possível conectar ao serviço de consulta de CEP')
-            else:
-                return False
+        #     if e.__class__.__name__ == "ConnectionError":
+        #         raise ConnectionError('Não foi possível conectar ao serviço de consulta de CEP')
+        #     else:
+        #         return False
 
 
         

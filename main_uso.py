@@ -44,5 +44,5 @@ from classes.Pedido import Pedido
 
 # print(pedido1)
 
-x = Endereco.consultar_cep(cep="04128081").keys()
+x = Endereco.consultar_cep(cep="04128081")
 print(x)

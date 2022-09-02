@@ -28,8 +28,6 @@ def test_Carrinho_adicionar_quantidade_negativa_carrinho():
         carrinho1 = Carrinho()
         carrinho1.adicionar_item(produto1, -2)
     
-    
-
 
 @pytest.mark.carrinho
 def test_Carrinho_remover_coisas_carrinho():
@@ -45,11 +43,9 @@ def test_Carrinho_remover_coisas_carrinho():
 
 @pytest.mark.carrinho
 def test_Carrinho_remover_coisas_carrinho():
-    
-    
+ 
     produto1 = Produto("222", "Carne")
     
-
     carrinho1 = Carrinho()
     carrinho1.adicionar_item(produto1, 2)
     carrinho1.remover_item(produto1)
@@ -68,7 +64,3 @@ def test_Carrinho_remover_coisas_nao_adicionadas_carrinho():
     with pytest.raises(ValueError):
         carrinho1.adicionar_item(produto1, 2)
         carrinho1.remover_item(produto2)
-    
-
-
-    
